@@ -6,7 +6,7 @@ using UnityEngine.Events;
 
 using RedRunner.Characters;
 using RedRunner.Collectables;
-using RedRunner.TerrainGeneration;
+// using RedRunner.TerrainGeneration;
 
 namespace RedRunner
 {
@@ -93,36 +93,36 @@ namespace RedRunner
 
         }
 
-        void UpdateDeathEvent(bool isDead)
-        {
-            if (isDead)
-            {
-                StartCoroutine(DeathCrt());
-            }
-            else
-            {
-                StopCoroutine("DeathCrt");
-            }
-        }
+        // void UpdateDeathEvent(bool isDead)
+        // {
+        //     if (isDead)
+        //     {
+        //         StartCoroutine(DeathCrt());
+        //     }
+        //     else
+        //     {
+        //         StopCoroutine("DeathCrt");
+        //     }
+        // }
 
-        IEnumerator DeathCrt()
-        {
-            m_LastScore = m_Score;
-            if (m_Score > m_HighScore)
-            {
-                m_HighScore = m_Score;
-            }
-            if (OnScoreChanged != null)
-            {
-                OnScoreChanged(m_Score, m_HighScore, m_LastScore);
-            }
+        // IEnumerator DeathCrt()
+        // {
+        //     m_LastScore = m_Score;
+        //     if (m_Score > m_HighScore)
+        //     {
+        //         m_HighScore = m_Score;
+        //     }
+        //     if (OnScoreChanged != null)
+        //     {
+        //         OnScoreChanged(m_Score, m_HighScore, m_LastScore);
+        //     }
 
-            yield return new WaitForSecondsRealtime(1.5f);
+        //     yield return new WaitForSecondsRealtime(1.5f);
 
-            EndGame();
-            var endScreen = UIManager.Singleton.UISCREENS.Find(el => el.ScreenInfo == UIScreenInfo.END_SCREEN);
-            UIManager.Singleton.OpenScreen(endScreen);
-        }
+        //     EndGame();
+        //     var endScreen = UIManager.Singleton.UISCREENS.Find(el => el.ScreenInfo == UIScreenInfo.END_SCREEN);
+        //     UIManager.Singleton.OpenScreen(endScreen);
+        // }
 
         private void Start()
         { 
@@ -211,52 +211,52 @@ namespace RedRunner
             StopGame();
         }
 
-        public void RespawnMainCharacter()
-        {
-            RespawnCharacter(m_MainCharacter);
-        }
+        // public void RespawnMainCharacter()
+        // {
+        //     RespawnCharacter(m_MainCharacter);
+        // }
 
-        public void RespawnCharacter(Character character)
-        {
-            Block block = TerrainGenerator.Singleton.GetCharacterBlock();
-            if (block != null)
-            {
-                Vector3 position = block.transform.position;
-                position.y += 2.56f;
-                position.x += 1.28f;
-                character.transform.position = position;
-                character.Reset();
-            }
-        }
+        // public void RespawnCharacter(Character character)
+        // {
+        //     Block block = TerrainGenerator.Singleton.GetCharacterBlock();
+        //     if (block != null)
+        //     {
+        //         Vector3 position = block.transform.position;
+        //         position.y += 2.56f;
+        //         position.x += 1.28f;
+        //         character.transform.position = position;
+        //         character.Reset();
+        //     }
+        // }
 
-        public void Reset()
-        {
-            m_Score = 0f;
-            if (OnReset != null)
-            {
-                OnReset();
-            }
-        }
+        // public void Reset()
+        // {
+        //     m_Score = 0f;
+        //     if (OnReset != null)
+        //     {
+        //         OnReset();
+        //     }
+        // }
 
-        public void ShareOnTwitter()
-        {
-            Share("https://twitter.com/intent/tweet?text={0}&url={1}");
-        }
+        // public void ShareOnTwitter()
+        // {
+        //     Share("https://twitter.com/intent/tweet?text={0}&url={1}");
+        // }
 
-        public void ShareOnGooglePlus()
-        {
-            Share("https://plus.google.com/share?text={0}&href={1}");
-        }
+        // public void ShareOnGooglePlus()
+        // {
+        //     Share("https://plus.google.com/share?text={0}&href={1}");
+        // }
 
-        public void ShareOnFacebook()
-        {
-            Share("https://www.facebook.com/sharer/sharer.php?u={1}");
-        }
+        // public void ShareOnFacebook()
+        // {
+        //     Share("https://www.facebook.com/sharer/sharer.php?u={1}");
+        // }
 
-        public void Share(string url)
-        {
-            Application.OpenURL(string.Format(url, m_ShareText, m_ShareUrl));
-        }
+        // public void Share(string url)
+        // {
+        //     Application.OpenURL(string.Format(url, m_ShareText, m_ShareUrl));
+        // }
 
         [System.Serializable]
         public class LoadEvent : UnityEvent
