@@ -28,20 +28,20 @@ namespace RedRunner.TerrainGeneration
 			}
 		}
 
-		public virtual void OnRemove (TerrainGenerator generator)
-		{
+		//public virtual void OnRemove (TerrainGenerator generator)
+		//{
 			
-		}
+		//}
 
-		public virtual void PreGenerate (TerrainGenerator generator)
-		{
+		//public virtual void PreGenerate (TerrainGenerator generator)
+		//{
 			
-		}
+		//}
 
-		public virtual void PostGenerate (TerrainGenerator generator)
-		{
+		//public virtual void PostGenerate (TerrainGenerator generator)
+		//{
 			
-		}
+		//}
 
 	}
 
