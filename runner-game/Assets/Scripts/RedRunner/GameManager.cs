@@ -13,6 +13,9 @@ namespace RedRunner
 {
     public sealed class GameManager : MonoBehaviour
     {
+        const int OBJECTS_PER_LEVEL = 2;
+        const int NUMBER_OF_LEVELS = 4;
+
         public delegate void ScoreHandler(float newScore, float highScore, float lastScore);
 
         public static event ScoreHandler OnScoreChanged;
@@ -26,7 +29,7 @@ namespace RedRunner
             }
         }
 
-        public Property<int> m_Coin = new Property<int>(20);
+        public Property<int> m_Coin = new Property<int>(OBJECTS_PER_LEVEL);
         public Property<int> m_Level = new Property<int>(0);
 
 
@@ -55,14 +58,22 @@ namespace RedRunner
             }
             this.m_Level.Value += 1;
 
-            SceneManager.LoadScene("Scenes/Level-" + this.m_Level.Value + "-Scene", LoadSceneMode.Additive);
+            if (this.m_Level.Value <= NUMBER_OF_LEVELS)
+            {
+                Debug.Log("Advance to level " + this.m_Level.Value);
+                SceneManager.LoadScene("Scenes/Level-" + this.m_Level.Value + "-Scene", LoadSceneMode.Additive);
+            } else {
+                Debug.Log("Game over, advance to questionnaire");
+                //TODO: Load recognition questionnaire
+            }
+
         }
 
         void Update()
         {
             if (m_Coin.Value == 0)
             {
-                m_Coin.Value = 20;
+                m_Coin.Value = OBJECTS_PER_LEVEL;
                 StartCoroutine(LoadNextLevelAsync());
             }
         }
