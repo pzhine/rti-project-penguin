@@ -12,7 +12,7 @@ namespace RedRunner.UI
 	{
 
 		[SerializeField]
-		protected ParticleSystem m_ParticleSystem;
+		// protected ParticleSystem m_ParticleSystem;
 
 		protected override void Awake ()
 		{
@@ -29,9 +29,9 @@ namespace RedRunner.UI
 			GetComponent<Animator> ().SetTrigger ("Collect");
 		}
 
-		public virtual void PlayParticleSystem ()
-		{
-			m_ParticleSystem.Play ();
-		}
+		// public virtual void PlayParticleSystem ()
+		// {
+		// 	m_ParticleSystem.Play ();
+		// }
 	}
 }
