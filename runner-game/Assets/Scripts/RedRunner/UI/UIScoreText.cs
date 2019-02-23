@@ -16,7 +16,7 @@ namespace RedRunner.UI
 		protected override void Awake ()
 		{
 			GameManager.OnScoreChanged += GameManager_OnScoreChanged;
-			GameManager.OnReset += GameManager_OnReset;
+			//GameManager.OnReset += GameManager_OnReset;
 			base.Awake ();
 		}
 

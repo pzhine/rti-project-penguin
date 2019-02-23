@@ -65,13 +65,13 @@ namespace RedRunner.Collectables
 
 		public override void Collect ()
 		{
-            //GameManager.Singleton.m_Coin.Value++;
+            GameManager.Singleton.m_Coin.Value-=1;
 			m_Animator.SetTrigger (COLLECT_TRIGGER);
 			m_ParticleSystem.Play ();
 			m_SpriteRenderer.enabled = false;
 			m_Collider2D.enabled = false;
 			Destroy (gameObject, m_ParticleSystem.main.duration);
-			//AudioManager.Singleton.PlayCoinSound (transform.position);
+            //AudioManager.Singleton.PlayCoinSound (transform.position);
 		}
 	}
 }

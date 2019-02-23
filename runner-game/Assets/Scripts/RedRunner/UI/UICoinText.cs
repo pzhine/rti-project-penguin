@@ -9,8 +9,7 @@ namespace RedRunner.UI
 {
 	public class UICoinText : UIText
 	{
-		[SerializeField]
-		protected string m_CoinTextFormat = "x {0}";
+		private string m_CoinTextFormat = "Objects Remaining: {0}";
 
 		protected override void Awake ()
 		{
@@ -24,7 +23,7 @@ namespace RedRunner.UI
 
         private void UpdateCoinsText(int newCoinValue)
         {
-            GetComponent<Animator>().SetTrigger("Collect");
+            //GetComponent<Animator>().SetTrigger("Collect");
             text = string.Format(m_CoinTextFormat, newCoinValue);
         }
 	}
