@@ -271,7 +271,6 @@ namespace RedRunner.Characters
 			m_Guard = false;
 			m_Block = false;
 			m_CurrentFootstepSoundIndex = 0;
-			GameManager.OnReset += GameManager_OnReset;
 		}
 
 		void Update ()
@@ -472,11 +471,11 @@ namespace RedRunner.Characters
 
 		#region Events
 
-		void GameManager_OnReset ()
-		{
-			transform.position = m_InitialPosition;
-			Reset ();
-		}
+		//void GameManager_OnReset ()
+		//{
+		//	transform.position = m_InitialPosition;
+		//	Reset ();
+		//}
 
 		void Skeleton_OnActiveChanged ( bool active )
 		{
