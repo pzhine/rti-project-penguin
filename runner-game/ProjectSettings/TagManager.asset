@@ -52,3 +52,6 @@ TagManager:
   - name: Character
     uniqueID: 1224928263
     locked: 0
+  - name: Snow
+    uniqueID: 3702699583
+    locked: 0
