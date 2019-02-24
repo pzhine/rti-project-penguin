@@ -61,8 +61,10 @@ namespace RedRunner
             if (this.m_Level.Value <= NUMBER_OF_LEVELS)
             {
                 Debug.Log("Advance to level " + this.m_Level.Value);
-                SceneManager.LoadScene("Scenes/Level-" + this.m_Level.Value + "-Scene", LoadSceneMode.Additive);
-            } else {
+                //SceneManager.LoadScene("Scenes/Level-" + this.m_Level.Value + "-Scene", LoadSceneMode.Additive);
+                SceneManager.LoadScene("Scenes/Level-X-Scene", LoadSceneMode.Additive);
+            }
+            else {
                 Debug.Log("Game over, advance to questionnaire");
                 //TODO: Load recognition questionnaire
             }
