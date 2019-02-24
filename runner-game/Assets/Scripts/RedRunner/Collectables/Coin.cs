@@ -4,31 +4,26 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using RedRunner.Characters;
+using RedRunner.Utilities;
 
 namespace RedRunner.Collectables
 {
 	public class Coin : Collectable
 	{
+        const int SPRITE_SCALE = 2;
+
 		[SerializeField]
 		protected ParticleSystem m_ParticleSystem;
 		[SerializeField]
 		protected SpriteRenderer m_SpriteRenderer;
 		[SerializeField]
 		protected Collider2D m_Collider2D;
-		[SerializeField]
-		protected Animator m_Animator;
-		[SerializeField]
+        [SerializeField]
 		protected bool m_UseOnTriggerEnter2D = true;
 
 		public override SpriteRenderer SpriteRenderer {
 			get {
 				return m_SpriteRenderer;
-			}
-		}
-
-		public override Animator Animator {
-			get {
-				return m_Animator;
 			}
 		}
 
@@ -38,7 +33,7 @@ namespace RedRunner.Collectables
 			}
 		}
 
-		public override bool UseOnTriggerEnter2D {
+        public override bool UseOnTriggerEnter2D {
 			get {
 				return m_UseOnTriggerEnter2D;
 			}
@@ -66,12 +61,16 @@ namespace RedRunner.Collectables
 		public override void Collect ()
 		{
             GameManager.Singleton.m_Coin.Value-=1;
-			m_Animator.SetTrigger (COLLECT_TRIGGER);
 			m_ParticleSystem.Play ();
 			m_SpriteRenderer.enabled = false;
 			m_Collider2D.enabled = false;
 			Destroy (gameObject, m_ParticleSystem.main.duration);
             //AudioManager.Singleton.PlayCoinSound (transform.position);
 		}
-	}
+
+        public void Awake()
+        {
+            Debug.Log("Coin Awake!");
+        }
+    }
 }
