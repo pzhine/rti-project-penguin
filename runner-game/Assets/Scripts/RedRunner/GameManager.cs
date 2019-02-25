@@ -32,6 +32,9 @@ namespace RedRunner
         public Property<int> m_Coin = new Property<int>(OBJECTS_PER_LEVEL);
         public Property<int> m_Level = new Property<int>(0);
 
+        [SerializeField]
+        protected CanvasGroup m_CanvasGroup;
+
 
         void Awake()
         {
@@ -46,12 +49,36 @@ namespace RedRunner
             StartCoroutine(LoadNextLevelAsync());
         }
 
+        IEnumerator FadeToBlack()
+        {
+
+            while(m_CanvasGroup.alpha < 1)
+            {
+                m_CanvasGroup.alpha += Time.deltaTime / 2;
+                yield return null;
+
+            }
+            yield return null;
+        }
+
+        IEnumerator FadeFromBlack()
+        {
+            while (m_CanvasGroup.alpha > 0)
+            {
+                m_CanvasGroup.alpha -= Time.deltaTime / 2;
+                yield return null;
+
+            }
+            yield return null;
+        }
+
         IEnumerator LoadNextLevelAsync()
         {
             if (this.m_Level.Value > 0)
             {
+                yield return FadeToBlack();
                 AsyncOperation asyncUnload = SceneManager.UnloadSceneAsync("Scenes/Level-" + this.m_Level.Value + "-Scene");
-                while(!asyncUnload.isDone)
+                while (!asyncUnload.isDone)
                 {
                     yield return null;
                 }
@@ -61,13 +88,20 @@ namespace RedRunner
             if (this.m_Level.Value <= NUMBER_OF_LEVELS)
             {
                 Debug.Log("Advance to level " + this.m_Level.Value);
-                SceneManager.LoadScene("Scenes/Level-" + this.m_Level.Value + "-Scene", LoadSceneMode.Additive);
+                AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("Scenes/Level-" + this.m_Level.Value + "-Scene", LoadSceneMode.Additive);
                 //SceneManager.LoadScene("Scenes/Level-X-Scene", LoadSceneMode.Additive);
+                while (!asyncLoad.isDone)
+                {
+                    yield return null;
+                }
+                yield return FadeFromBlack();
             }
             else {
                 Debug.Log("Game over, advance to questionnaire");
                 //TODO: Load recognition questionnaire
             }
+
+            yield return null;
 
         }
 
