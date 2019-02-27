@@ -54,7 +54,7 @@ namespace RedRunner
 
             while(m_CanvasGroup.alpha < 1)
             {
-                m_CanvasGroup.alpha += Time.deltaTime / 2;
+                m_CanvasGroup.alpha += Time.deltaTime;
                 yield return null;
 
             }
@@ -65,7 +65,7 @@ namespace RedRunner
         {
             while (m_CanvasGroup.alpha > 0)
             {
-                m_CanvasGroup.alpha -= Time.deltaTime / 2;
+                m_CanvasGroup.alpha -= Time.deltaTime;
                 yield return null;
 
             }
