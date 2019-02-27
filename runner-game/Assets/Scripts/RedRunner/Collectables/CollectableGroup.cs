@@ -20,14 +20,17 @@ namespace RedRunner.Collectables
             Debug.Log("RenderChildSprites");
             float xScale, yScale, aspect;
             SpriteRenderer spriteRenderer;
+            Sprite sprite;
             foreach(Transform child in transform)
             {
                 // calculate the scale
                 spriteRenderer = (SpriteRenderer)child.gameObject.GetComponent("SpriteRenderer");
-                spriteRenderer.sprite = spriteQ.Dequeue();
-                aspect = spriteRenderer.sprite.rect.width / spriteRenderer.sprite.rect.height;
-                yScale = SPRITE_HEIGHT / spriteRenderer.sprite.rect.height;
-                xScale = yScale * aspect;
+                sprite = spriteQ.Dequeue();
+                aspect = sprite.rect.width / sprite.rect.height;
+                yScale = SPRITE_HEIGHT / sprite.rect.height;
+                xScale = SPRITE_HEIGHT * aspect / sprite.rect.width;
+
+                spriteRenderer.sprite = sprite;
 
                 child.localScale = new Vector3(xScale, yScale);
                 //Debug.Log("width: " + spriteRenderer.sprite.rect.width);
