@@ -13,7 +13,7 @@ namespace RedRunner
 {
     public sealed class GameManager : MonoBehaviour
     {
-        const int OBJECTS_PER_LEVEL = 2;
+        const int OBJECTS_PER_LEVEL = 20;
         const int NUMBER_OF_LEVELS = 4;
 
         public delegate void ScoreHandler(float newScore, float highScore, float lastScore);

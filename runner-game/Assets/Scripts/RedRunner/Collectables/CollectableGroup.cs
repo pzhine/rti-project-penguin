@@ -8,7 +8,7 @@ namespace RedRunner.Collectables
 
     public class CollectableGroup : MonoBehaviour
     {
-        const int SPRITE_HEIGHT = 300;
+        const int SPRITE_HEIGHT = 278;
 
         [SerializeField]
         protected List<Sprite> m_sprites;
