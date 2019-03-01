@@ -379,16 +379,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_sprites:
-  - {fileID: 21300000, guid: c0980706c1bab4983988c2e32949947b, type: 3}
-  - {fileID: 21300000, guid: 362c49625f5ca48e8983285c78b55395, type: 3}
-  - {fileID: 21300000, guid: 362c49625f5ca48e8983285c78b55395, type: 3}
-  - {fileID: 21300000, guid: 362c49625f5ca48e8983285c78b55395, type: 3}
-  - {fileID: 21300000, guid: 362c49625f5ca48e8983285c78b55395, type: 3}
-  - {fileID: 21300000, guid: 362c49625f5ca48e8983285c78b55395, type: 3}
-  - {fileID: 21300000, guid: 362c49625f5ca48e8983285c78b55395, type: 3}
-  - {fileID: 21300000, guid: 362c49625f5ca48e8983285c78b55395, type: 3}
-  - {fileID: 21300000, guid: 362c49625f5ca48e8983285c78b55395, type: 3}
-  - {fileID: 21300000, guid: 362c49625f5ca48e8983285c78b55395, type: 3}
+  - {fileID: 21300000, guid: c166eab5c2d7b474a8aabd4ecf5de5e9, type: 3}
+  - {fileID: 21300000, guid: c166eab5c2d7b474a8aabd4ecf5de5e9, type: 3}
 --- !u!4 &158711332
 Transform:
   m_ObjectHideFlags: 0
