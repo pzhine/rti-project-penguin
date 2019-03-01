@@ -249,8 +249,8 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.4, y: 0.4}
-  m_EdgeRadius: 0.4
+  m_Size: {x: 0.3, y: 0.3}
+  m_EdgeRadius: 1
 --- !u!114 &82155176
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -827,8 +827,8 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.4, y: 0.4}
-  m_EdgeRadius: 0.4
+  m_Size: {x: 0.3, y: 0.3}
+  m_EdgeRadius: 1
 --- !u!114 &258273671
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5996,8 +5996,8 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.4, y: 0.4}
-  m_EdgeRadius: 0.4
+  m_Size: {x: 0.3, y: 0.3}
+  m_EdgeRadius: 1
 --- !u!114 &346960154
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10849,8 +10849,8 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.4, y: 0.4}
-  m_EdgeRadius: 0.4
+  m_Size: {x: 0.3, y: 0.3}
+  m_EdgeRadius: 1
 --- !u!114 &379042944
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10985,7 +10985,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Objects Remaining: 1'
+  m_Text: 'Objects Remaining: 10'
 --- !u!222 &396418392
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -15781,8 +15781,8 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.4, y: 0.4}
-  m_EdgeRadius: 0.4
+  m_Size: {x: 0.3, y: 0.3}
+  m_EdgeRadius: 1
 --- !u!114 &459262095
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26927,6 +26927,15 @@ Tilemap:
       m_ObjectToInstantiate: {fileID: 0}
       m_TileFlags: 1
       m_ColliderType: 1
+  - first: {x: 63, y: 0, z: 0}
+    second:
+      m_TileIndex: 14
+      m_TileSpriteIndex: 5
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_ObjectToInstantiate: {fileID: 0}
+      m_TileFlags: 1
+      m_ColliderType: 1
   - first: {x: 64, y: 0, z: 0}
     second:
       m_TileIndex: 8
@@ -27866,7 +27875,7 @@ Tilemap:
     m_Data: {fileID: 11400000, guid: f1ace4057401f49f4b86e11d89ff5dc7, type: 2}
   - m_RefCount: 11
     m_Data: {fileID: 11400000, guid: 5337dcd2761e24c729b05c2057a7a39b, type: 2}
-  - m_RefCount: 2
+  - m_RefCount: 3
     m_Data: {fileID: 11400000, guid: e010fd0d464ea42cba44d7436ff7c7cb, type: 2}
   m_TileSpriteArray:
   - m_RefCount: 9
@@ -27879,7 +27888,7 @@ Tilemap:
     m_Data: {fileID: 21300000, guid: 172666429f37742fb93e02abd24dadbf, type: 3}
   - m_RefCount: 3
     m_Data: {fileID: 21300000, guid: 134883c73ce864ac2b2c3f146538b4be, type: 3}
-  - m_RefCount: 2
+  - m_RefCount: 3
     m_Data: {fileID: 21300000, guid: cfa5264178db743bd843345ab225829e, type: 3}
   - m_RefCount: 12
     m_Data: {fileID: 21300000, guid: 5ae20498bfd534bd786a2e4af38e46b0, type: 3}
@@ -27900,7 +27909,7 @@ Tilemap:
   - m_RefCount: 1
     m_Data: {fileID: 21300000, guid: e847d769e483b41efa6e69e3e2a053a2, type: 3}
   m_TileMatrixArray:
-  - m_RefCount: 232
+  - m_RefCount: 233
     m_Data:
       e00: 1
       e01: 0
@@ -27919,7 +27928,7 @@ Tilemap:
       e32: 0
       e33: 1
   m_TileColorArray:
-  - m_RefCount: 232
+  - m_RefCount: 233
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_AnimationFrameRate: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -28081,8 +28090,8 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.4, y: 0.4}
-  m_EdgeRadius: 0.4
+  m_Size: {x: 0.3, y: 0.3}
+  m_EdgeRadius: 1
 --- !u!114 &663951829
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28350,8 +28359,8 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.4, y: 0.4}
-  m_EdgeRadius: 0.4
+  m_Size: {x: 0.3, y: 0.3}
+  m_EdgeRadius: 1
 --- !u!114 &776886649
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28474,8 +28483,8 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.4, y: 0.4}
-  m_EdgeRadius: 0.4
+  m_Size: {x: 0.3, y: 0.3}
+  m_EdgeRadius: 1
 --- !u!114 &784896706
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33486,8 +33495,8 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.4, y: 0.4}
-  m_EdgeRadius: 0.4
+  m_Size: {x: 0.3, y: 0.3}
+  m_EdgeRadius: 1
 --- !u!114 &956101270
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -43068,8 +43077,8 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.4, y: 0.4}
-  m_EdgeRadius: 0.4
+  m_Size: {x: 0.3, y: 0.3}
+  m_EdgeRadius: 1
 --- !u!114 &1002622249
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -52959,8 +52968,8 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.4, y: 0.4}
-  m_EdgeRadius: 0.4
+  m_Size: {x: 0.3, y: 0.3}
+  m_EdgeRadius: 1
 --- !u!114 &1137100096
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -67507,8 +67516,8 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.4, y: 0.4}
-  m_EdgeRadius: 0.4
+  m_Size: {x: 0.3, y: 0.3}
+  m_EdgeRadius: 1
 --- !u!114 &1223280602
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -72580,8 +72589,8 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.4, y: 0.4}
-  m_EdgeRadius: 0.4
+  m_Size: {x: 0.3, y: 0.3}
+  m_EdgeRadius: 1
 --- !u!114 &1269516300
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -77589,8 +77598,8 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.4, y: 0.4}
-  m_EdgeRadius: 0.4
+  m_Size: {x: 0.3, y: 0.3}
+  m_EdgeRadius: 1
 --- !u!114 &1417745308
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -77713,8 +77722,8 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.4, y: 0.4}
-  m_EdgeRadius: 0.4
+  m_Size: {x: 0.3, y: 0.3}
+  m_EdgeRadius: 1
 --- !u!114 &1486585910
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -82566,8 +82575,8 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.4, y: 0.4}
-  m_EdgeRadius: 0.4
+  m_Size: {x: 0.3, y: 0.3}
+  m_EdgeRadius: 1
 --- !u!114 &1584497735
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -82764,8 +82773,8 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.4, y: 0.4}
-  m_EdgeRadius: 0.4
+  m_Size: {x: 0.3, y: 0.3}
+  m_EdgeRadius: 1
 --- !u!114 &1661797607
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -92457,8 +92466,8 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.4, y: 0.4}
-  m_EdgeRadius: 0.4
+  m_Size: {x: 0.3, y: 0.3}
+  m_EdgeRadius: 1
 --- !u!114 &1819059239
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -97310,8 +97319,8 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.4, y: 0.4}
-  m_EdgeRadius: 0.4
+  m_Size: {x: 0.3, y: 0.3}
+  m_EdgeRadius: 1
 --- !u!114 &1842730398
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -102714,8 +102723,8 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.4, y: 0.4}
-  m_EdgeRadius: 0.4
+  m_Size: {x: 0.3, y: 0.3}
+  m_EdgeRadius: 1
 --- !u!114 &2079368355
 MonoBehaviour:
   m_ObjectHideFlags: 0
