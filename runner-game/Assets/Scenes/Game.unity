@@ -328,6 +328,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_CanvasGroup: {fileID: 52089711}
+  m_StartLevel: 4
 --- !u!4 &1230529463
 Transform:
   m_ObjectHideFlags: 0

@@ -30,10 +30,13 @@ namespace RedRunner
         }
 
         public Property<int> m_Coin = new Property<int>(OBJECTS_PER_LEVEL);
-        public Property<int> m_Level = new Property<int>(0);
+        public Property<int> m_Level = new Property<int>(3);
 
         [SerializeField]
         protected CanvasGroup m_CanvasGroup;
+
+        [SerializeField]
+        protected int m_StartLevel;
 
 
         void Awake()
@@ -45,6 +48,7 @@ namespace RedRunner
                 return;
             }
             m_Singleton = this;
+            m_Level.Value = m_StartLevel - 1;
 
             StartCoroutine(LoadNextLevelAsync());
         }
@@ -74,7 +78,7 @@ namespace RedRunner
 
         IEnumerator LoadNextLevelAsync()
         {
-            if (this.m_Level.Value > 0)
+            if (this.m_Level.Value > (this.m_StartLevel - 1))
             {
                 yield return FadeToBlack();
                 AsyncOperation asyncUnload = SceneManager.UnloadSceneAsync("Scenes/Level-" + this.m_Level.Value + "-Scene");
