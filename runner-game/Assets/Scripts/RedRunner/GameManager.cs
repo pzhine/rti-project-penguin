@@ -88,25 +88,20 @@ namespace RedRunner
                 }
             }
             this.m_Level.Value += 1;
+            string nextLevel = "Scenes/Level-" + this.m_Level.Value + "-Scene";
 
-            if (this.m_Level.Value <= NUMBER_OF_LEVELS)
+            if (this.m_Level.Value > NUMBER_OF_LEVELS)
             {
-                Debug.Log("Advance to level " + this.m_Level.Value);
-                AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("Scenes/Level-" + this.m_Level.Value + "-Scene", LoadSceneMode.Additive);
-                //SceneManager.LoadScene("Scenes/Level-X-Scene", LoadSceneMode.Additive);
-                while (!asyncLoad.isDone)
-                {
-                    yield return null;
-                }
-                yield return FadeFromBlack();
-            }
-            else {
-                Debug.Log("Game over, advance to questionnaire");
-                //TODO: Load recognition questionnaire
+                nextLevel = "Scenes/GameOver-Scene";
             }
 
-            yield return null;
-
+            Debug.Log("Advance to level " + nextLevel);
+            AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(nextLevel, LoadSceneMode.Additive);
+            while (!asyncLoad.isDone)
+            {
+                yield return null;
+            }
+            yield return FadeFromBlack();
         }
 
         void Update()
