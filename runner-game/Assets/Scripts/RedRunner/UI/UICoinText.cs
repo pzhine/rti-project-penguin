@@ -19,17 +19,5 @@ namespace RedRunner.UI
         {
             text = string.Format(m_CoinTextFormat, GameManager.Singleton.m_Coin);
         }
-
-        //protected override void Start()
-        //{
-        //    GameManager.Singleton.m_Coin.AddEventAndFire(UpdateCoinsText, this);
-        //    Debug.Log("CoinText Start!");
-        //}
-
-        //private void UpdateCoinsText(int newCoinValue)
-        //{
-        //    //GetComponent<Animator>().SetTrigger("Collect");
-        //    text = string.Format(m_CoinTextFormat, newCoinValue);
-        //}
 	}
 }

@@ -221,7 +221,7 @@ CanvasGroup:
   m_GameObject: {fileID: 52089706}
   m_Enabled: 1
   m_Alpha: 1
-  m_Interactable: 1
+  m_Interactable: 0
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
 --- !u!1 &409997340
@@ -374,10 +374,12 @@ MonoBehaviour:
   m_Coin: 20
   m_Level: 0
   m_SessionId: 
+  m_CurrentSceneName: 
   OBJECTS_PER_LEVEL: 20
   NUMBER_OF_LEVELS: 4
   m_Logger: {fileID: 574454197}
   m_CanvasGroup: {fileID: 52089711}
+  m_PanelTransform: {fileID: 409997341}
   m_StartLevel: 1
 --- !u!4 &1230529463
 Transform:

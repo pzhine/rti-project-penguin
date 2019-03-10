@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
@@ -29,6 +30,7 @@ namespace RedRunner
         public int m_Coin;
         public int m_Level;
         public string m_SessionId;
+        public string m_CurrentSceneName;
 
         [SerializeField]
         public int OBJECTS_PER_LEVEL;
@@ -41,6 +43,9 @@ namespace RedRunner
 
         [SerializeField]
         protected CanvasGroup m_CanvasGroup;
+
+        [SerializeField]
+        protected RectTransform m_PanelTransform;
 
         [SerializeField]
         protected int m_StartLevel;
@@ -56,7 +61,20 @@ namespace RedRunner
             m_Singleton = this;
             m_Level = m_StartLevel - 1;
             m_Coin = OBJECTS_PER_LEVEL;
-            m_SessionId = ShortGuid();
+
+            StartCoroutine(LoadSceneAsync("Scenes/Intro-Scene"));
+        }
+
+
+
+        public void StartGame(string sessionId=null)
+        {
+            m_SessionId = sessionId;
+            if (String.IsNullOrEmpty(m_SessionId))
+            {
+                m_SessionId = ShortGuid();
+            }
+            Debug.Log(String.Format("StartGame! SessionId: {0}", m_SessionId));
 
             m_Logger.StartSession();
 
@@ -65,8 +83,8 @@ namespace RedRunner
 
         IEnumerator FadeToBlack()
         {
-
-            while(m_CanvasGroup.alpha < 1)
+            m_PanelTransform.localScale = new Vector3(1, 1, 1);
+            while (m_CanvasGroup.alpha < 1)
             {
                 m_CanvasGroup.alpha += Time.deltaTime;
                 yield return null;
@@ -83,7 +101,34 @@ namespace RedRunner
                 yield return null;
 
             }
+            m_PanelTransform.localScale = new Vector3(0, 0, 0);
+
             yield return null;
+        }
+
+        IEnumerator LoadSceneAsync(string sceneName)
+        {
+            // Fadeout previous scene if there was one
+            if (!String.IsNullOrEmpty(m_CurrentSceneName))
+            {
+                yield return FadeToBlack();
+                AsyncOperation asyncUnload = SceneManager.UnloadSceneAsync(m_CurrentSceneName);
+                while (!asyncUnload.isDone)
+                {
+                    yield return null;
+                }
+            }
+
+            // Save SceneName to current
+            m_CurrentSceneName = sceneName;
+
+            // Fadein next scene
+            AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
+            while (!asyncLoad.isDone)
+            {
+                yield return null;
+            }
+            yield return FadeFromBlack();
         }
 
         IEnumerator LoadNextLevelAsync()
@@ -91,13 +136,6 @@ namespace RedRunner
             if (this.m_Level > (this.m_StartLevel - 1))
             {
                 m_Logger.EndLevel();
-
-                yield return FadeToBlack();
-                AsyncOperation asyncUnload = SceneManager.UnloadSceneAsync("Scenes/Level-" + this.m_Level + "-Scene");
-                while (!asyncUnload.isDone)
-                {
-                    yield return null;
-                }
             }
             this.m_Level += 1;
             string nextLevel = "Scenes/Level-" + this.m_Level + "-Scene";
@@ -112,12 +150,7 @@ namespace RedRunner
             }
 
             Debug.Log("Advance to level " + nextLevel);
-            AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(nextLevel, LoadSceneMode.Additive);
-            while (!asyncLoad.isDone)
-            {
-                yield return null;
-            }
-            yield return FadeFromBlack();
+            yield return LoadSceneAsync(nextLevel);
         }
 
         void Update()
