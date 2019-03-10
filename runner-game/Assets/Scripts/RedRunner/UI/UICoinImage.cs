@@ -19,15 +19,15 @@ namespace RedRunner.UI
 			base.Awake ();
 		}
 
-        protected override void Start()
-        {
-            GameManager.Singleton.m_Coin.AddEventAndFire(Coin_OnCoinCollected, this);
-        }
+  //      protected override void Start()
+  //      {
+  //          GameManager.Singleton.m_Coin.AddEventAndFire(Coin_OnCoinCollected, this);
+  //      }
 
-        void Coin_OnCoinCollected (int coinValue)
-		{
-			GetComponent<Animator> ().SetTrigger ("Collect");
-		}
+  //      void Coin_OnCoinCollected (int coinValue)
+		//{
+		//	GetComponent<Animator> ().SetTrigger ("Collect");
+		//}
 
 		// public virtual void PlayParticleSystem ()
 		// {

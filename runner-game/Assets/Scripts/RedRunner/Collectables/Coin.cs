@@ -60,7 +60,8 @@ namespace RedRunner.Collectables
 
 		public override void Collect ()
 		{
-            GameManager.Singleton.m_Coin.Value-=1;
+            GameManager.Singleton.m_Coin-=1;
+            GameManager.Singleton.m_Logger.CollectItem(m_SpriteRenderer.sprite.name);
 			m_ParticleSystem.Play ();
 			m_SpriteRenderer.enabled = false;
 			m_Collider2D.enabled = false;
@@ -68,9 +69,9 @@ namespace RedRunner.Collectables
             //AudioManager.Singleton.PlayCoinSound (transform.position);
 		}
 
-        public void Awake()
-        {
-            Debug.Log("Coin Awake!");
-        }
+        //public void Awake()
+        //{
+        //    Debug.Log("Coin Awake!");
+        //}
     }
 }

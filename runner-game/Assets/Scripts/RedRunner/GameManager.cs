@@ -13,9 +13,6 @@ namespace RedRunner
 {
     public sealed class GameManager : MonoBehaviour
     {
-        const int OBJECTS_PER_LEVEL = 20;
-        const int NUMBER_OF_LEVELS = 4;
-
         public delegate void ScoreHandler(float newScore, float highScore, float lastScore);
 
         public static event ScoreHandler OnScoreChanged;
@@ -29,15 +26,24 @@ namespace RedRunner
             }
         }
 
-        public Property<int> m_Coin = new Property<int>(OBJECTS_PER_LEVEL);
-        public Property<int> m_Level = new Property<int>(3);
+        public int m_Coin;
+        public int m_Level;
+        public string m_SessionId;
+
+        [SerializeField]
+        public int OBJECTS_PER_LEVEL;
+
+        [SerializeField]
+        public int NUMBER_OF_LEVELS;
+
+        [SerializeField]
+        public FirebaseLogger m_Logger;
 
         [SerializeField]
         protected CanvasGroup m_CanvasGroup;
 
         [SerializeField]
         protected int m_StartLevel;
-
 
         void Awake()
         {
@@ -48,7 +54,11 @@ namespace RedRunner
                 return;
             }
             m_Singleton = this;
-            m_Level.Value = m_StartLevel - 1;
+            m_Level = m_StartLevel - 1;
+            m_Coin = OBJECTS_PER_LEVEL;
+            m_SessionId = ShortGuid();
+
+            m_Logger.StartSession();
 
             StartCoroutine(LoadNextLevelAsync());
         }
@@ -78,21 +88,27 @@ namespace RedRunner
 
         IEnumerator LoadNextLevelAsync()
         {
-            if (this.m_Level.Value > (this.m_StartLevel - 1))
+            if (this.m_Level > (this.m_StartLevel - 1))
             {
+                m_Logger.EndLevel();
+
                 yield return FadeToBlack();
-                AsyncOperation asyncUnload = SceneManager.UnloadSceneAsync("Scenes/Level-" + this.m_Level.Value + "-Scene");
+                AsyncOperation asyncUnload = SceneManager.UnloadSceneAsync("Scenes/Level-" + this.m_Level + "-Scene");
                 while (!asyncUnload.isDone)
                 {
                     yield return null;
                 }
             }
-            this.m_Level.Value += 1;
-            string nextLevel = "Scenes/Level-" + this.m_Level.Value + "-Scene";
+            this.m_Level += 1;
+            string nextLevel = "Scenes/Level-" + this.m_Level + "-Scene";
 
-            if (this.m_Level.Value > NUMBER_OF_LEVELS)
+            if (this.m_Level > NUMBER_OF_LEVELS)
             {
                 nextLevel = "Scenes/GameOver-Scene";
+            }
+            else
+            {
+                m_Logger.StartLevel(this.m_Level);
             }
 
             Debug.Log("Advance to level " + nextLevel);
@@ -106,11 +122,17 @@ namespace RedRunner
 
         void Update()
         {
-            if (m_Coin.Value == 0)
+            if (m_Coin == 0)
             {
-                m_Coin.Value = OBJECTS_PER_LEVEL;
+                m_Coin = OBJECTS_PER_LEVEL;
                 StartCoroutine(LoadNextLevelAsync());
             }
+        }
+
+        private string ShortGuid()
+        {
+            string encoded = Convert.ToBase64String(Guid.NewGuid().ToByteArray());
+            return encoded.Substring(0, 22).Replace("/", "_").Replace("+", "__");
         }
 
         [System.Serializable]
