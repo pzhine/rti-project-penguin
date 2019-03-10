@@ -1357,8 +1357,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Sorry, the WorkID you entered has already run the trial. You may only run
-    it once.
+  m_Text: Sorry, the worker ID you entered has already run the trial. You may only
+    run it once.
 --- !u!222 &1588769995
 CanvasRenderer:
   m_ObjectHideFlags: 0
