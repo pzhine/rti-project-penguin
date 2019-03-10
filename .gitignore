@@ -35,3 +35,6 @@ sysinfo.txt
 
 # OSX stuff
 .DS_Store
+
+# Firebase
+.firebase/
