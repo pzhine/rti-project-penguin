@@ -12,13 +12,16 @@ namespace RedRunner.UI
         protected Button PlayButton;
 
         [SerializeField]
+        protected UIDialog DuplicateSessionDialog;
+
+        [SerializeField]
         protected InputField WorkerIdInput;
 
         private void Start()
         {
             PlayButton.SetButtonAction(() =>
             {
-                GameManager.Singleton.StartGame(WorkerIdInput.text);
+                GameManager.Singleton.StartGame(WorkerIdInput.text, DuplicateSessionDialog.ShowDialog);
             });
         }
 

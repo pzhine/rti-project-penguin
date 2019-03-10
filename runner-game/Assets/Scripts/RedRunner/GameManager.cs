@@ -67,18 +67,29 @@ namespace RedRunner
 
 
 
-        public void StartGame(string sessionId=null)
+        public void StartGame(string sessionId=null, Action duplicateSessionCb=null)
         {
             m_SessionId = sessionId;
             if (String.IsNullOrEmpty(m_SessionId))
             {
                 m_SessionId = ShortGuid();
             }
+
+            if (duplicateSessionCb == null)
+            {
+                duplicateSessionCb = () =>
+                {
+                    // keep trying until we get a unique id
+                    StartGame();
+                };
+            }
+
             Debug.Log(String.Format("StartGame! SessionId: {0}", m_SessionId));
 
-            m_Logger.StartSession();
+            m_Logger.StartSession(
+                () => { StartCoroutine(LoadNextLevelAsync()); },
+                duplicateSessionCb);
 
-            StartCoroutine(LoadNextLevelAsync());
         }
 
         IEnumerator FadeToBlack()
