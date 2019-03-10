@@ -221,7 +221,7 @@ CanvasGroup:
   m_GameObject: {fileID: 52089706}
   m_Enabled: 1
   m_Alpha: 1
-  m_Interactable: 1
+  m_Interactable: 0
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
 --- !u!1 &409997340
@@ -298,6 +298,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 409997340}
   m_CullTransparentMesh: 0
+--- !u!1 &574454196
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 574454198}
+  - component: {fileID: 574454197}
+  m_Layer: 0
+  m_Name: FirebaseLogger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &574454197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 574454196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57e3a774d4c6b4f47a4e80410851967f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ProjectId: rti-penguin-game
+--- !u!4 &574454198
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 574454196}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.08864011, y: 0.01071474, z: -0.0073018596}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1230529461
 GameObject:
   m_ObjectHideFlags: 0
@@ -327,7 +371,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00d5c04fc2bc8c845aa165b46aa4a6e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_Coin: 20
+  m_Level: 0
+  m_SessionId: 
+  m_CurrentSceneName: 
+  OBJECTS_PER_LEVEL: 20
+  NUMBER_OF_LEVELS: 4
+  m_Logger: {fileID: 574454197}
   m_CanvasGroup: {fileID: 52089711}
+  m_PanelTransform: {fileID: 409997341}
   m_StartLevel: 1
 --- !u!4 &1230529463
 Transform:

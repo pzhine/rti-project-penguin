@@ -11,21 +11,13 @@ namespace RedRunner.UI
 	{
 		private string m_CoinTextFormat = "Objects Remaining: {0}";
 
-		protected override void Awake ()
-		{
-			base.Awake ();
-		}
-
-        protected override void Start()
+        protected override void Awake()
         {
-            GameManager.Singleton.m_Coin.AddEventAndFire(UpdateCoinsText, this);
-            Debug.Log("CoinText Start!");
+            base.Awake();
         }
-
-        private void UpdateCoinsText(int newCoinValue)
+        void Update()
         {
-            //GetComponent<Animator>().SetTrigger("Collect");
-            text = string.Format(m_CoinTextFormat, newCoinValue);
+            text = string.Format(m_CoinTextFormat, GameManager.Singleton.m_Coin);
         }
 	}
 }

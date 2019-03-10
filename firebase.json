@@ -1,0 +1,10 @@
+{
+  "hosting": {
+    "public": "runner-game/build/web-runner",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}

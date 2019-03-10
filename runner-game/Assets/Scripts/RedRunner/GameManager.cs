@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
@@ -13,9 +14,6 @@ namespace RedRunner
 {
     public sealed class GameManager : MonoBehaviour
     {
-        const int OBJECTS_PER_LEVEL = 20;
-        const int NUMBER_OF_LEVELS = 4;
-
         public delegate void ScoreHandler(float newScore, float highScore, float lastScore);
 
         public static event ScoreHandler OnScoreChanged;
@@ -29,15 +27,28 @@ namespace RedRunner
             }
         }
 
-        public Property<int> m_Coin = new Property<int>(OBJECTS_PER_LEVEL);
-        public Property<int> m_Level = new Property<int>(3);
+        public int m_Coin;
+        public int m_Level;
+        public string m_SessionId;
+        public string m_CurrentSceneName;
+
+        [SerializeField]
+        public int OBJECTS_PER_LEVEL;
+
+        [SerializeField]
+        public int NUMBER_OF_LEVELS;
+
+        [SerializeField]
+        public FirebaseLogger m_Logger;
 
         [SerializeField]
         protected CanvasGroup m_CanvasGroup;
 
         [SerializeField]
-        protected int m_StartLevel;
+        protected RectTransform m_PanelTransform;
 
+        [SerializeField]
+        protected int m_StartLevel;
 
         void Awake()
         {
@@ -48,15 +59,43 @@ namespace RedRunner
                 return;
             }
             m_Singleton = this;
-            m_Level.Value = m_StartLevel - 1;
+            m_Level = m_StartLevel - 1;
+            m_Coin = OBJECTS_PER_LEVEL;
 
-            StartCoroutine(LoadNextLevelAsync());
+            StartCoroutine(LoadSceneAsync("Scenes/Intro-Scene"));
+        }
+
+
+
+        public void StartGame(string sessionId=null, Action duplicateSessionCb=null)
+        {
+            m_SessionId = sessionId;
+            if (String.IsNullOrEmpty(m_SessionId))
+            {
+                m_SessionId = ShortGuid();
+            }
+
+            if (duplicateSessionCb == null)
+            {
+                duplicateSessionCb = () =>
+                {
+                    // keep trying until we get a unique id
+                    StartGame();
+                };
+            }
+
+            Debug.Log(String.Format("StartGame! SessionId: {0}", m_SessionId));
+
+            m_Logger.StartSession(
+                () => { StartCoroutine(LoadNextLevelAsync()); },
+                duplicateSessionCb);
+
         }
 
         IEnumerator FadeToBlack()
         {
-
-            while(m_CanvasGroup.alpha < 1)
+            m_PanelTransform.localScale = new Vector3(1, 1, 1);
+            while (m_CanvasGroup.alpha < 1)
             {
                 m_CanvasGroup.alpha += Time.deltaTime;
                 yield return null;
@@ -73,30 +112,29 @@ namespace RedRunner
                 yield return null;
 
             }
+            m_PanelTransform.localScale = new Vector3(0, 0, 0);
+
             yield return null;
         }
 
-        IEnumerator LoadNextLevelAsync()
+        IEnumerator LoadSceneAsync(string sceneName)
         {
-            if (this.m_Level.Value > (this.m_StartLevel - 1))
+            // Fadeout previous scene if there was one
+            if (!String.IsNullOrEmpty(m_CurrentSceneName))
             {
                 yield return FadeToBlack();
-                AsyncOperation asyncUnload = SceneManager.UnloadSceneAsync("Scenes/Level-" + this.m_Level.Value + "-Scene");
+                AsyncOperation asyncUnload = SceneManager.UnloadSceneAsync(m_CurrentSceneName);
                 while (!asyncUnload.isDone)
                 {
                     yield return null;
                 }
             }
-            this.m_Level.Value += 1;
-            string nextLevel = "Scenes/Level-" + this.m_Level.Value + "-Scene";
 
-            if (this.m_Level.Value > NUMBER_OF_LEVELS)
-            {
-                nextLevel = "Scenes/GameOver-Scene";
-            }
+            // Save SceneName to current
+            m_CurrentSceneName = sceneName;
 
-            Debug.Log("Advance to level " + nextLevel);
-            AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(nextLevel, LoadSceneMode.Additive);
+            // Fadein next scene
+            AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
             while (!asyncLoad.isDone)
             {
                 yield return null;
@@ -104,13 +142,41 @@ namespace RedRunner
             yield return FadeFromBlack();
         }
 
+        IEnumerator LoadNextLevelAsync()
+        {
+            if (this.m_Level > (this.m_StartLevel - 1))
+            {
+                m_Logger.EndLevel();
+            }
+            this.m_Level += 1;
+            string nextLevel = "Scenes/Level-" + this.m_Level + "-Scene";
+
+            if (this.m_Level > NUMBER_OF_LEVELS)
+            {
+                nextLevel = "Scenes/GameOver-Scene";
+            }
+            else
+            {
+                m_Logger.StartLevel(this.m_Level);
+            }
+
+            Debug.Log("Advance to level " + nextLevel);
+            yield return LoadSceneAsync(nextLevel);
+        }
+
         void Update()
         {
-            if (m_Coin.Value == 0)
+            if (m_Coin == 0)
             {
-                m_Coin.Value = OBJECTS_PER_LEVEL;
+                m_Coin = OBJECTS_PER_LEVEL;
                 StartCoroutine(LoadNextLevelAsync());
             }
+        }
+
+        private string ShortGuid()
+        {
+            string encoded = Convert.ToBase64String(Guid.NewGuid().ToByteArray());
+            return encoded.Substring(0, 22).Replace("/", "_").Replace("+", "__");
         }
 
         [System.Serializable]

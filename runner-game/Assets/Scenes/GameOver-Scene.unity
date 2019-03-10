@@ -305,7 +305,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35c5616ed0b4d4a5c86779ea8624e3b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Url: https://www.soscisurvey.de/demo/?r={SID}
+  m_Url: https://www.soscisurvey.de/rtiproject/?r={SID}
   m_SessionIdToken: '{SID}'
   m_WaitSeconds: 6
 --- !u!4 &443614944
