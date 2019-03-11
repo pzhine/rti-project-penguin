@@ -60,6 +60,10 @@ namespace RedRunner.Collectables
 
 		public override void Collect ()
 		{
+            if (GameManager.Singleton == null)
+            {
+                return;
+            }
             GameManager.Singleton.m_Coin-=1;
             GameManager.Singleton.m_Logger.CollectItem(m_SpriteRenderer.sprite.name);
 			m_ParticleSystem.Play ();
