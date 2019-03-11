@@ -17,7 +17,10 @@ namespace RedRunner.UI
         }
         void Update()
         {
-            text = string.Format(m_CoinTextFormat, GameManager.Singleton.m_Coin);
+            if (GameManager.Singleton != null)
+            {
+                text = string.Format(m_CoinTextFormat, GameManager.Singleton.m_Coin);
+            }
         }
 	}
 }
