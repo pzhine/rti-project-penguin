@@ -447,7 +447,7 @@ namespace RedRunner.Characters
                 m_Animator.ResetTrigger("Jump");
                 m_Animator.SetTrigger("Jump");
                 m_JumpParticleSystem.Play();
-                //AudioManager.Singleton.PlayJumpSound ( m_JumpAndGroundedAudioSource );
+                AudioManager.Singleton.PlayJumpSound();
             }
 		}
 
