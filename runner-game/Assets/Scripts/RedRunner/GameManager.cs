@@ -146,6 +146,7 @@ namespace RedRunner
         {
             if (this.m_Level > (this.m_StartLevel - 1))
             {
+                AudioManager.Singleton.PlayLevelCompleteSound();
                 m_Logger.EndLevel();
             }
             this.m_Level += 1;
