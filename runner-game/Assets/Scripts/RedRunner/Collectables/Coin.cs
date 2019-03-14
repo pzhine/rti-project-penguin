@@ -73,6 +73,24 @@ namespace RedRunner.Collectables
             AudioManager.Singleton.PlayCoinSound (transform.position);
 		}
 
+        public void OnBecameVisible()
+        {
+            GameManager.Singleton.m_Logger.CollectableBecameVisible(m_SpriteRenderer.sprite.name);
+        }
+
+        public void OnBecameInvisible()
+        {
+            GameManager.Singleton.m_Logger.CollectableBecameInvisible(m_SpriteRenderer.sprite.name);
+        }
+
+        //public void FixedUpdate()
+        //{
+        //    if (m_SpriteRenderer.isVisible)
+        //    {
+        //        Debug.Log(m_SpriteRenderer.sprite.name);
+        //    }
+        //}
+
         //public void Awake()
         //{
         //    Debug.Log("Coin Awake!");
